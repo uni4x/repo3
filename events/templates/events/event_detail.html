@@ -1,0 +1,26 @@
+<!-- templates/events/event_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.title }}</title>
+</head>
+<body>
+    <h1>{{ event.title }}</h1>
+    <p>{{ event.description }}</p>
+    <p>Start: {{ event.start_time }}</p>
+    <p>End: {{ event.end_time }}</p>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+        <li>
+            <p>{{ comment.comment_text }}</p>
+            <p>By: {{ comment.created_by.username }} at {{ comment.created_at }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_comment' event.id %}">Add Comment</a>
+    <a href="{% url 'calendar_view' %}">Back to Calendar</a>
+</body>
+</html>
