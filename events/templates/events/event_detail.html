@@ -1,12 +1,9 @@
-<!-- templates/events/event_detail.html -->
+<!-- events/templates/events/event_detail.html -->
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ event.title }}</title>
-</head>
-<body>
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
     <h1>{{ event.title }}</h1>
     <p>{{ event.description }}</p>
     <p>Start: {{ event.start_time }}</p>
@@ -22,5 +19,5 @@
     </ul>
     <a href="{% url 'add_comment' event.id %}">Add Comment</a>
     <a href="{% url 'calendar_view' %}">Back to Calendar</a>
-</body>
-</html>
+    <a href="{% url 'delete_event' event.id %}">Delete Event</a>
+{% endblock %}

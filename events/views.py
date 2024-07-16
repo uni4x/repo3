@@ -43,3 +43,10 @@ def event_detail(request, event_id):
     return render(request, 'events/event_detail.html', {'event': event, 'comments': comments})
 
 
+@login_required
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == 'POST':
+        event.delete()
+        return redirect('calendar_view')
+    return render(request, 'events/confirm_delete.html', {'event': event})

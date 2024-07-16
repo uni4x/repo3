@@ -1,18 +1,14 @@
 <!-- events/templates/events/add_event.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Event</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Add Event{% endblock %}
+
+{% block content %}
     <h1>Add Event</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
-
     <a href="{% url 'calendar_view' %}">Back to Calendar</a>
-</body>
-</html>
+{% endblock %}

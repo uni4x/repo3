@@ -1,21 +1,10 @@
 <!-- mysite/events/templates/events/calendar.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Calendar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Calendar{% endblock %}
+
+{% block content %}
     <div id="calendar"></div>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-    <a href="{% url 'update_color' %}">予定の色を変更する</a>
     <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
@@ -31,7 +20,6 @@
                     {% endfor %}
                 ],
                 eventRender: function(event, element) {
-                    // タイトルのみ表示（時間非表示）
                     element.find('.fc-time').remove();
                 },
                 dayClick: function(date, jsEvent, view) {
@@ -40,5 +28,4 @@
             });
         });
     </script>
-</body>
-</html>
+{% endblock %}
