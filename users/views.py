@@ -2,10 +2,23 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
+from .forms import SignUpForm, CustomAuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
+from django.contrib.auth.views import LoginView
 
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+    template_name = 'registration/login.html'
+
+    def get(self, request, *args, **kwargs):
+        print("CustomLoginView.get called")  # デバッグ用出力
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print("Using CustomAuthenticationForm:", self.authentication_form)  # デバッグ用出力
+        return context
 
 def signup(request):
     if request.method == 'POST':
@@ -21,8 +34,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
-
-
 
 @login_required
 def update_color(request):

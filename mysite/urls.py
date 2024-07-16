@@ -19,13 +19,16 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+
+def redirect_to_login(request):
+    return redirect('login')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('events/', include('events.urls')), 
-    path('', include('events.urls')),
+    path('events/', include('events.urls')),
     path('comments/', include('comments.urls')),
     path('users/', include('users.urls')),
+    path('', redirect_to_login),  # ルートパスをログインページにリダイレクト
 ]
-

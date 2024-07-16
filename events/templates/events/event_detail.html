@@ -4,20 +4,22 @@
 {% block title %}{{ event.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.description }}</p>
-    <p>Start: {{ event.start_time }}</p>
-    <p>End: {{ event.end_time }}</p>
-    <h2>Comments</h2>
-    <ul>
-        {% for comment in comments %}
-        <li>
-            <p>{{ comment.comment_text }}</p>
-            <p>By: {{ comment.created_by.username }} at {{ comment.created_at }}</p>
-        </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'add_comment' event.id %}">Add Comment</a>
-    <a href="{% url 'calendar_view' %}">Back to Calendar</a>
-    <a href="{% url 'delete_event' event.id %}">Delete Event</a>
+    <div class="event-detail">
+        <h1>{{ event.title }}</h1>
+        <p>{{ event.description }}</p>
+        <br>
+        <p>Start: {{ event.start_time }}</p>
+        <p>End: {{ event.end_time }}</p>
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in comments %}
+            <li>
+                <p>{{ comment.comment_text }}</p>
+                <p>By: {{ comment.created_by.username }} at {{ comment.created_at }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_comment' event.id %}">Add Comment</a>
+        <a href="{% url 'delete_event' event.id %}">Delete Event</a>
+    </div>
 {% endblock %}
