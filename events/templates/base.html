@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}My Site{% endblock %}</title>
+    <title>{% block title %}予定共有Calendar{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
@@ -14,11 +14,11 @@
 <body>
     <header>
         <div>
-            <h1>My Site</h1>
+            <h1>予定共有カレンダー</h1>
             <nav>
                 <a href="{% url 'calendar_view' %}">Calendar</a>
-                <a href="{% url 'add_event' %}">Add Event</a>
-                <a href="{% url 'update_color' %}">予定の色を変更する</a>
+                <a href="{% url 'add_event' %}">予定の追加</a>
+                <a href="{% url 'update_color' %}">色を変更する</a>
             </nav>
         </div>
         <div class="logout">
@@ -32,7 +32,7 @@
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; 2024 My Site</p>
+        <p>&copy; 2024 yotei kyoyu Calendar</p>
     </footer>
 </body>
 </html>

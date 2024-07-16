@@ -5,12 +5,12 @@
 
 {% block content %}
     <div class="form-container">
-        <h2>Delete Event</h2>
-        <p>Are you sure you want to delete the event "{{ event.title }}"?</p>
+        <h2>予定の削除</h2>
+        <p>"{{ event.title }}" この予定を削除しますか？</p>
 
         <form method="post">
             {% csrf_token %}
-            <button type="submit">Yes, delete</button>
+            <button type="submit">削除する</button>
             <a href="{% url 'event_detail' event.id %}">Cancel</a>
         </form>
     </div>

@@ -1,0 +1,16 @@
+<!-- comments/templates/comments/edit_comment.html -->
+{% extends "base.html" %}
+
+{% block title %}Edit Comment{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h1>Edit Comment</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+        <a href="{% url 'event_detail' comment.event.id %}">Back to Event</a>
+    </div>
+{% endblock %}

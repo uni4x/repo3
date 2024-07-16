@@ -8,18 +8,21 @@
         <h1>{{ event.title }}</h1>
         <p>{{ event.description }}</p>
         <br>
-        <p>Start: {{ event.start_time }}</p>
-        <p>End: {{ event.end_time }}</p>
-        <h2>Comments</h2>
+        <p>開始日: {{ event.start_time }}</p>
+        <p>終了日: {{ event.end_time }}</p>
+        <h2>コメント</h2>
         <ul>
             {% for comment in comments %}
             <li>
                 <p>{{ comment.comment_text }}</p>
                 <p>By: {{ comment.created_by.username }} at {{ comment.created_at }}</p>
+                <a href="{% url 'edit_comment' comment.id %}">編集</a>
+                <a href="{% url 'delete_comment' comment.id %}">削除</a>
             </li>
             {% endfor %}
         </ul>
-        <a href="{% url 'add_comment' event.id %}">Add Comment</a>
-        <a href="{% url 'delete_event' event.id %}">Delete Event</a>
+        <a href="{% url 'edit_event' event.id %}">予定の編集</a>
+        <a href="{% url 'add_comment' event.id %}">コメント追加</a>
+        <a href="{% url 'delete_event' event.id %}">予定の削除</a>
     </div>
 {% endblock %}

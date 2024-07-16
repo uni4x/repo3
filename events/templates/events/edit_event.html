@@ -1,15 +1,16 @@
-<!-- comments/templates/comments/add_comment.html -->
+<!-- events/templates/events/edit_event.html -->
 {% extends "base.html" %}
 
-{% block title %}Add Comment{% endblock %}
+{% block title %}Edit Event{% endblock %}
 
 {% block content %}
     <div class="form-container">
-        <h1>「{{ event.title }}」 にコメントを追加する</h1>
+        <h1>予定の編集</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">保存</button>
         </form>
+        <a href="{% url 'event_detail' event.id %}">予定に戻る</a>
     </div>
 {% endblock %}
