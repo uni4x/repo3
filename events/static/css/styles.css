@@ -35,6 +35,21 @@ nav {
     margin-left: auto;
 }
 
+/* Remove background and border from the logout form */
+.logout form {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.logout button {
+    background-color: #555;
+}
+
+.logout button:hover {
+    background-color: #707070;
+}
+
 button {
     background-color: #444;
     color: white;
@@ -49,7 +64,7 @@ button:hover {
 
 main {
     padding: 1rem;
-    padding-bottom: 7rem; /* フッターの高さ分のパディングを追加 */
+    padding-bottom: 7rem;
 }
 
 footer {
