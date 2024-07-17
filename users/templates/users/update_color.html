@@ -1,12 +1,9 @@
 <!-- templates/users/update_color.html -->
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Update Color</title>
-</head>
-<body>
+{% block title %}Update color{% endblock %}
+
+{% block content %}
     <h1>Update Your Color</h1>
     <form method="post">
         {% csrf_token %}
@@ -14,5 +11,4 @@
         <button type="submit">Save</button>
     </form>
     <a href="{% url 'calendar_view' %}">Back to Calendar</a>
-</body>
-</html>
+{% endblock %}

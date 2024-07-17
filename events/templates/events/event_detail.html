@@ -10,6 +10,9 @@
         <br>
         <p>開始日: {{ event.start_time }}</p>
         <p>終了日: {{ event.end_time }}</p>
+        <p>By: {{ event.created_by }}</p>
+        <br>
+        
         <h2>コメント</h2>
         <ul>
             {% for comment in comments %}
@@ -25,4 +28,9 @@
         <a href="{% url 'add_comment' event.id %}">コメント追加</a>
         <a href="{% url 'delete_event' event.id %}">予定の削除</a>
     </div>
+    {% if error_message %}
+    <script>
+        alert("{{ error_message }}");
+    </script>
+    {% endif %}
 {% endblock %}

@@ -9,8 +9,8 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Save</button>
+            <button type="submit">保存</button>
         </form>
-        <a href="{% url 'event_detail' comment.event.id %}">Back to Event</a>
+        <a href="{% url 'event_detail' comment.event.id %}">イベントに戻る</a>
     </div>
 {% endblock %}

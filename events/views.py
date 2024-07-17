@@ -2,6 +2,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from .models import Event
 from .forms import EventForm
 from comments.models import Comment
@@ -39,6 +40,9 @@ def add_event(request):
 @login_required
 def edit_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
+    comments = Comment.objects.filter(event=event)  # コメントを取得
+    if event.created_by != request.user:
+        return render(request, 'events/event_detail.html', {'event': event, 'comments': comments, 'error_message': '他の人の投稿は編集できません'})
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
@@ -46,7 +50,7 @@ def edit_event(request, event_id):
             return redirect('event_detail', event_id=event.id)
     else:
         form = EventForm(instance=event)
-    return render(request, 'events/edit_event.html', {'form': form, 'event': event})
+    return render(request, 'events/edit_event.html', {'form': form, 'event': event, 'comments': comments})
 
 
 @login_required
@@ -59,7 +63,10 @@ def event_detail(request, event_id):
 @login_required
 def delete_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
+    comments = Comment.objects.filter(event=event)  # コメントを取得
+    if event.created_by != request.user:
+        return render(request, 'events/event_detail.html', {'event': event, 'comments': comments, 'error_message': '他の人の投稿は削除できません'})
     if request.method == 'POST':
         event.delete()
         return redirect('calendar_view')
-    return render(request, 'events/confirm_delete.html', {'event': event})
+    return render(request, 'events/confirm_delete.html', {'event': event, 'comments': comments})

@@ -10,5 +10,7 @@ class Event(models.Model):
     end_time = models.DateField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    # def __str__(self):
+    #     return self.title
     def __str__(self):
-        return self.title
+        return f'Comment by {self.created_by} on {self.title}'
