@@ -20,12 +20,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from users.views import CustomLoginView
 
 def redirect_to_login(request):
     return redirect('login')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),  # ここを追加
     path('accounts/', include('django.contrib.auth.urls')),
     path('events/', include('events.urls')),
     path('comments/', include('comments.urls')),
